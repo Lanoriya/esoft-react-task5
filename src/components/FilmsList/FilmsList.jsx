@@ -1,15 +1,12 @@
-import './Films.css';
-
 export function FilmsList({ films }) {
-
   return (
     <div className="films-container">
       {films.map((film) => (
         <div
           key={film.id}
-          className="film-item flex flex-col rounded-lg text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white md:max-w-xl md:flex-row">
+          className="film-item flex flex-col rounded-lg bg-[#181a1b] text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white md:max-w-xl md:flex-row">
           <img
-            className="film-logo h-96 w-80 rounded-t-lg object-cover md:h-auto md:w-48 md:!rounded-none md:!rounded-s-lg"
+            className="film-logo h-96 w-80 rounded-t-lg object-cover md:h-auto md:w-36 md:!rounded-none md:!rounded-s-lg"
             src={film.image}
             alt={film.title}
           />

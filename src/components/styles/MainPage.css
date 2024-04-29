@@ -1,0 +1,14 @@
+.films-box {
+  display: flex;
+  grid-gap: 30px;
+}
+
+.films-filter {
+  width: 20%;
+}
+
+.films-container {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 30px;
+}
