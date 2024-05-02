@@ -6,7 +6,7 @@ export function DetailsPage() {
   const film = useSelector(state => state.films.find(film => film.id === +id));
 
   if (!film) {
-    return <div>Loading...</div>
+    return <div>Загрузка...</div>
   }
 
   return (

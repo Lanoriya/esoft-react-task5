@@ -1,21 +1,36 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export function FilmsList() {
   const navigate = useNavigate();
   const films = useSelector(state => state.films);
+  const selectedOption = useSelector(state => state.filter.selectedFilter); // Retrieve selected option from Redux state
 
   const handleFilmClick = (film) => {
     navigate(`/film/${film}`);
   };
 
-  if (!films || films.length === 0) {
-    return <div>Loading...</div>;
+  const filteredFilms = useMemo(() => {
+    switch (selectedOption) {
+      case "По типу":
+        return films.slice().sort((a, b) => (a.type || '').localeCompare(b.type || '')); // Create a copy of films using slice() before sorting
+      case "По рейтингу (от больших к меньшим)":
+        return films.slice().sort((a, b) => b.rating - a.rating); // Create a copy of films using slice() before sorting
+      case "По рейтингу (от меньшим к большим)":
+        return films.slice().sort((a, b) => a.rating - b.rating); // Create a copy of films using slice() before sorting
+      default:
+        return films;
+    }
+  }, [films, selectedOption]);
+
+  if (!filteredFilms || filteredFilms.length === 0) {
+    return <div>Загрузка...</div>;
   }
 
   return (
     <div className="films-container">
-      {films.map((film) => (
+      {filteredFilms.map((film) => (
         <div
           onClick={() => {handleFilmClick(film.id)}}
           key={film.id}

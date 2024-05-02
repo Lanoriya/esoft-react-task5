@@ -5,7 +5,7 @@ const filmSlice = createSlice({
   initialState: [],
   reducers: {
     setFilms: (state, action) => {
-      return action.payload; // Assuming action.payload contains the films data
+      return action.payload;
     }
   }
 });
