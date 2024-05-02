@@ -2,12 +2,12 @@ import { FilmsList } from "./FilmsList/FilmsList";
 import { FilmsFilter } from "./FilmsFilter/FilmsFilter";
 import './styles/MainPage.css';
 
-export function MainPage({ films }) {
+export function MainPage() {
 
   return (
     <div className="films-box">
-      <FilmsFilter films={films}/>
-      <FilmsList films={films}/>
+      <FilmsFilter />
+      <FilmsList />
     </div>
   )
 };

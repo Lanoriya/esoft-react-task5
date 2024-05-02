@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 
-export function DetailsPage({ films }) {
+export function DetailsPage() {
   const { id } = useParams();
-  
-  useEffect(() => {
+  const film = useSelector(state => state.films.find(film => film.id === +id));
 
-  }, [])
+  if (!film) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
-      details
+      <h2>{film.title}</h2>
+      <p>{film.full_description}</p>
     </div>
   )
 };
