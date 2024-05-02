@@ -10,6 +10,18 @@
   width: 20%;
 }
 
+.film-item {
+  cursor: pointer;
+}
+
+.film-logo:hover, .film-about:hover {
+  opacity: 0.7;
+}
+
+.film-buttons {
+  padding: 8px;
+}
+
 .films-container {
   display: flex;
   flex-direction: column;
