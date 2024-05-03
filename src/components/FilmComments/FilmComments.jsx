@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addComment } from '../../redux/filmComments';
+import { selectCommentsForFilm } from '../../redux/selectors';
 
 function FilmComments({ filmId }) {
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
 
   // Переносим хук useSelector вне компонента
-  const comments = useSelector(state => state.filmComments[filmId] || []);
+  const comments = useSelector(state => selectCommentsForFilm(state, filmId));
 
   const handleAddComment = () => {
     dispatch(addComment({ filmId, comment: { author: 'Анонимный пользователь', text: newComment } }));

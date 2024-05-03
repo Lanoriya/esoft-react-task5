@@ -8,7 +8,7 @@ import 'tailwindcss/tailwind.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store} stabilityCheck="never">
+    <Provider store={store}>
       <Router>
         <App />
       </Router>
