@@ -10,7 +10,7 @@ export function FilmsFilter() {
   };
 
   return (
-    <div className="films-filter">
+    <div className="films-filter flex justify-center p-4 w-1/5">
       <div className="relative w-full" data-twe-dropdown-ref>
         <button
           className="flex items-center rounded bg-neutral-800 w-full px-6 pb-2 pt-2.5 text-xs justify-center font-medium uppercase leading-normal text-neutral-50 shadow-dark-3 transition duration-150 ease-in-out hover:bg-neutral-700 hover:shadow-dark-2 focus:bg-neutral-700 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-dark-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"

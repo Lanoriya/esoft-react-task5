@@ -1,11 +1,10 @@
 import { FilmsList } from "./FilmsList/FilmsList";
 import { FilmsFilter } from "./FilmsFilter/FilmsFilter";
-import './styles/MainPage.css';
 
 export function MainPage() {
 
   return (
-    <div className="films-box">
+    <div className="flex gap-8">
       <FilmsFilter />
       <FilmsList />
     </div>

@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 import filmReducer from './filmSlice';
 import filterReducer from './filterSlice';
 import filmFavoriteReducer from './filmFavorite';
