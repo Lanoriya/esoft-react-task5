@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FilmComments from "./FilmComments/FilmComments";
+import { Link } from 'react-router-dom';
 
 export function DetailsPage() {
   const { id } = useParams();
@@ -48,17 +49,19 @@ export function DetailsPage() {
       <h2 className="text-xl mt-8">Похожие фильмы:</h2>
       <div className="similarFilms flex gap-8 flex-wrap">
         {similarFilms.map((similarFilm) => (
-          <div className="similarFilms-item text-center flex flex-col items-center w-1/4" key={similarFilm.id}>
-            <img
-              className="film-logo h-60 w-48"
-              src={similarFilm.image}
-              alt={similarFilm.title}
-            />
-            <div className="similarFilms-about">
-              <h4 className="text-xl">{similarFilm.title}</h4>
-              <p>{similarFilm.genres.join(', ')}</p>
+          <Link className="w-1/4 text-center" to={`/film/${similarFilm.id}`} key={similarFilm.id}>
+            <div className="flex flex-col similarFilms-item items-center" key={similarFilm.id}>
+              <img
+                className="film-logo h-60 w-48"
+                src={similarFilm.image}
+                alt={similarFilm.title}
+              />
+              <div className="similarFilms-about">
+                <h4 className="text-xl">{similarFilm.title}</h4>
+                <p>{similarFilm.genres.join(', ')}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <FilmComments filmId={id}/>
