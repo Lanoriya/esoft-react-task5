@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
-// import { Header } from './components/Header';
 import { MainPage } from './components/MainPage';
-import { SearchPage } from './components/SearchPage';
-import { DetailsPage } from './components/DetailsPage';
+import { SearchPage } from './components/SearchPage/SearchPage';
+import { DetailsPage } from './components/DetailsPage/DetailsPage';
 import { useDispatch } from 'react-redux';
 import { setFilms } from './redux/filmSlice';
 import { Tooltip, initTWE, Dropdown, Ripple } from "tw-elements";

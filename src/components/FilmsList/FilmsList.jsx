@@ -8,7 +8,7 @@ export function FilmsList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const films = useSelector(state => state.films);
-  const selectedOption = useSelector(state => state.filter.selectedFilter); // Retrieve selected option from Redux state
+  const selectedOption = useSelector(state => state.filter.selectedFilter);
   const favoriteFilms = useSelector(state => state.filmFavorite);
   const laterFilms = useSelector(state => state.filmLater);
 
@@ -19,11 +19,11 @@ export function FilmsList() {
   const filteredFilms = useMemo(() => {
     switch (selectedOption) {
       case "По типу":
-        return films.slice().sort((a, b) => (a.type || '').localeCompare(b.type || '')); // Create a copy of films using slice() before sorting
+        return films.slice().sort((a, b) => (a.type || '').localeCompare(b.type || ''));
       case "По рейтингу (от больших к меньшим)":
-        return films.slice().sort((a, b) => b.rating - a.rating); // Create a copy of films using slice() before sorting
+        return films.slice().sort((a, b) => b.rating - a.rating);
       case "По рейтингу (от меньшим к большим)":
-        return films.slice().sort((a, b) => a.rating - b.rating); // Create a copy of films using slice() before sorting
+        return films.slice().sort((a, b) => a.rating - b.rating);
       default:
         return films;
     }
