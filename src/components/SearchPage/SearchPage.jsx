@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 export function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const films = useSelector(state => state.films);
-
-  const filteredFilms = films.filter(film => {
-    const includesSearchQuery = film.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const includesAllSelectedCategories = selectedCategories.length === 0 || selectedCategories.every(category => film.genres.includes(category));
-    return includesSearchQuery && includesAllSelectedCategories;
-  });
-
+  const { register, handleSubmit } = useForm();
+  
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -25,6 +22,15 @@ export function SearchPage() {
     }
   };
 
+  const onSubmit = () => {
+    const filteredFilms = films.filter(film => {
+      const includesSearchQuery = film.title.toLowerCase().includes(searchQuery.toLowerCase());
+      const includesAllSelectedCategories = selectedCategories.length === 0 || selectedCategories.every(category => film.genres.includes(category));
+      return includesSearchQuery && includesAllSelectedCategories;
+    });
+    setSearchResults(filteredFilms);
+  };
+
   return (
     <div className="max-w-lg mx-auto my-8">
       <Link
@@ -33,7 +39,7 @@ export function SearchPage() {
       >
         Главная
       </Link>
-      <form className="bg-neutral-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-neutral-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label
             className="block text-white-700 text-sm font-bold mb-2"
@@ -67,10 +73,15 @@ export function SearchPage() {
             </label>
           ))}
         </div>
-
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Поиск
+        </button>
       </form>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredFilms.map((film) => (
+        {searchResults.map((film) => (
           <Link to={`/film/${film.id}`} key={film.id} className="block">
             <div key={film.id} className="bg-neutral-800 p-4 shadow-md rounded-md">
               <img

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addComment } from '../../redux/filmComments';
 import { selectCommentsForFilm } from '../../redux/selectors';
+import { useForm } from 'react-hook-form';
 
 function FilmComments({ filmId }) {
   const dispatch = useDispatch();
-  const [newComment, setNewComment] = useState('');
   const comments = useSelector(state => selectCommentsForFilm(state, filmId));
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleAddComment = () => {
-    dispatch(addComment({ filmId, comment: { author: 'Анонимный пользователь', text: newComment } }));
-    setNewComment('');
+  const onSubmit = (data) => {
+    dispatch(addComment({ filmId, comment: { author: 'Анонимный пользователь', text: data.comment } }));
+    reset();
   };
 
   return (
@@ -24,18 +25,19 @@ function FilmComments({ filmId }) {
           </li>
         ))}
       </ul>
-      <textarea
-        className="w-full p-2 mt-4 text-black border border-gray-300 rounded"
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        placeholder="Добавить комментарий"
-      />
-      <button
-        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={handleAddComment}
-      >
-        Добавить комментарий
-      </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <textarea
+          className="w-full p-2 mt-4 text-black border border-gray-300 rounded"
+          {...register('comment', { required: true })}
+          placeholder="Добавить комментарий"
+        />
+        <button
+          type="submit"
+          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Добавить комментарий
+        </button>
+      </form>
     </div>
   );
 }
