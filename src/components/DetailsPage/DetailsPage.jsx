@@ -67,7 +67,7 @@ export function DetailsPage() {
           </Link>
         ))}
       </div>
-      <FilmComments filmId={id}/>
+      <FilmComments filmId={+id}/>
     </>
   )
 }

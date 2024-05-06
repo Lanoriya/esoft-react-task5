@@ -8,10 +8,10 @@ import 'tailwindcss/tailwind.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router basename={'/esoft-react-task5/'}>
+    <Router basename={'/esoft-react-task5/'}>
+      <Provider store={store}>
         <App />
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   </React.StrictMode>
 )
