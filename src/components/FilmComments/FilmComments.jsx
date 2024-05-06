@@ -1,8 +1,8 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addComment } from '../../redux/filmComments';
 import { selectCommentsForFilm } from '../../redux/selectors';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 function FilmComments({ filmId }) {
   const dispatch = useDispatch();
@@ -41,5 +41,9 @@ function FilmComments({ filmId }) {
     </div>
   );
 }
+
+FilmComments.propTypes = {
+  filmId: PropTypes.number.isRequired,
+};
 
 export default FilmComments;

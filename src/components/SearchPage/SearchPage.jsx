@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,7 @@ export function SearchPage() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const films = useSelector(state => state.films);
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit } = useForm();
   
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -61,7 +61,7 @@ export function SearchPage() {
         </p>
         <div className="mb-4 flex flex-wrap justify-between">
           {categories.map(category => (
-            <label key={category} className="inline-flex items-center text-sm text-white-700 mb-2">
+            <label key={category} className="flex w-2/6 items-center text-sm text-white-700 mb-2">
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-black-600 rounded"
@@ -110,7 +110,6 @@ const categories = [
   "Фантастика",
   "Биография",
   "Драма",
-  "Мультфильм",
   "Мюзикл",
   "Фэнтези",
   "Романтика"

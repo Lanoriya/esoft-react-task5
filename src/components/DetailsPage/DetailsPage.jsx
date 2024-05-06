@@ -70,4 +70,4 @@ export function DetailsPage() {
       <FilmComments filmId={id}/>
     </>
   )
-};
+}
